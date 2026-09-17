@@ -17,62 +17,63 @@
     --cyan:#5EEAD4;
     --amber:#F5A623;
     --pink:#F472B6;
-    --nav-bg: rgba(10, 14, 20, 0.8);
-    --badge-bg: rgba(16, 21, 31, 0.85);
-    --hero-tag-bg: rgba(10, 14, 20, 0.75);
     --mono:'JetBrains Mono', monospace;
     --sans:'Inter', sans-serif;
   }
+  /* ---------- THEME TOGGLE ---------- */
 
-  body.light-mode {
-    --bg: #F8FAFC;
-    --bg2: #FFFFFF;
-    --bg3: #F1F5F9;
-    --line: #D7DEE8;
-    --text: #111827;
-    --muted: #64748B;
-    --nav-bg: rgba(255, 255, 255, 0.8);
-    --badge-bg: rgba(255, 255, 255, 0.8);
-    --hero-tag-bg: rgba(255, 255, 255, 0.75);
-  }
+:root {
+  --bg: #0A0E14;
+  --bg2: #10151F;
+  --bg3: #151B27;
+  --line: #1E2530;
+  --text: #E6EDF3;
+  --muted: #7C8B9E;
+}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    color-scheme: dark;
-  }
+/* Light Mode */
+body.light-mode {
+  --bg: #F8FAFC;
+  --bg2: #FFFFFF;
+  --bg3: #F1F5F9;
+  --line: #D7DEE8;
+  --text: #111827;
+  --muted: #64748B;
+}
 
-  body.light-mode {
-    color-scheme: light;
-  }
+/* Smooth theme change */
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
 
-  .theme-toggle {
-    border: 1px solid var(--line);
-    background: var(--bg2);
-    color: var(--text);
-    width: 42px;
-    height: 42px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    transition: all 0.25s ease;
-  }
+/* Theme Button */
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: var(--bg2);
+  color: var(--text);
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  cursor: pointer;
 
-  .theme-toggle:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    transform: translateY(-2px);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  font-size: 18px;
+  transition: all 0.25s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-2px);
+}
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  ::selection{background:var(--cyan); color:var(--bg);}
+  body{background:var(--bg); color:var(--text); font-family:var(--sans); overflow-x:hidden;}
   ::selection{background:var(--cyan); color:var(--bg);}
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
@@ -91,7 +92,7 @@
   nav{
     position:fixed; top:0; left:0; right:0; z-index:100;
     display:flex; align-items:center; justify-content:space-between;
-    padding:18px 6vw; background:var(--nav-bg); backdrop-filter:blur(10px);
+    padding:18px 6vw; background:rgba(10,14,20,0.85); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   .logo{font-family:var(--mono); font-weight:700; font-size:15px; color:var(--text); display:flex; align-items:center; gap:10px;}
@@ -165,7 +166,7 @@
   .hero-photo-frame{position:relative; width:100%; height:100%; border-radius:50%; overflow:hidden; background:var(--bg2); border:4px solid var(--bg);}
   .hero-photo-frame img{width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(10%) contrast(1.05); transition:filter 0.4s ease, transform 0.5s ease;}
   .hero-photo-frame:hover img{filter:grayscale(0%) contrast(1.08); transform:scale(1.05);}
-  .orbit-badge{position:absolute; z-index:4; font-family:var(--mono); font-weight:600; font-size:13px; padding:9px 16px; border-radius:10px; background:var(--badge-bg); backdrop-filter:blur(8px); border:1px solid var(--line); box-shadow:0 10px 30px rgba(0,0,0,0.12); animation:badgeFloat 4s ease-in-out infinite;}
+  .orbit-badge{position:absolute; z-index:4; font-family:var(--mono); font-weight:600; font-size:13px; padding:9px 16px; border-radius:10px; background:rgba(16,21,31,0.85); backdrop-filter:blur(8px); border:1px solid var(--line); box-shadow:0 10px 30px rgba(0,0,0,0.4); animation:badgeFloat 4s ease-in-out infinite;}
   .orbit-badge.b1{ top:6%; right:-6%; color:var(--amber); animation-delay:0s; }
   .orbit-badge.b2{ top:38%; left:-14%; color:var(--cyan); animation-delay:0.6s; }
   .orbit-badge.b3{ bottom:8%; left:-4%; color:var(--pink); animation-delay:1.2s; }
@@ -175,7 +176,7 @@
     .orbit-badge.b1{right:-2%;} .orbit-badge.b2{left:-6%;} .orbit-badge.b3{left:0%;} .orbit-badge.b4{right:-2%;}
   }
   @keyframes badgeFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-  .hero-photo-tag{position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); z-index:4; font-family:var(--mono); font-size:11.5px; color:var(--text); background:var(--hero-tag-bg); backdrop-filter:blur(6px); padding:6px 14px; border-radius:20px; border:1px solid var(--line); display:flex; align-items:center; gap:7px; white-space:nowrap;}
+  .hero-photo-tag{position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); z-index:4; font-family:var(--mono); font-size:11.5px; color:var(--text); background:rgba(10,14,20,0.75); backdrop-filter:blur(6px); padding:6px 14px; border-radius:20px; border:1px solid var(--line); display:flex; align-items:center; gap:7px; white-space:nowrap;}
   .hero-photo-tag .d{width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan); animation:pulse 2s infinite;}
 
   .scroll-cue{position:absolute; bottom:30px; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:11px; color:var(--muted); display:flex; flex-direction:column; align-items:center; gap:8px;}
@@ -294,7 +295,7 @@
       </div>
       <div class="social-row">
         <a class="social-chip" href="https://github.com/lakzi03" target="_blank">GitHub</a>
-        <a class="social-chip" href="#" target="_blank">LinkedIn</a>
+        <a class="social-chip" href="https://www.linkedin.com/in/lakshani-dewapura-7a992836b " target="_blank">LinkedIn</a>
         <a class="social-chip" href="mailto:lakshanidewapura03@gmail.com">Email</a>
       </div>
     </div>
@@ -497,7 +498,7 @@
   <div class="contact-grid">
     <a class="contact-card reveal" href="mailto:lakshanidewapura03@gmail.com"><span class="label">Email</span><span class="value">lakshanidewapura03@gmail.com</span></a>
     <a class="contact-card reveal" href="https://github.com/lakzi03" target="_blank"><span class="label">GitHub</span><span class="value">github.com/lakzi03</span></a>
-    <a class="contact-card reveal" href="#" target="_blank"><span class="label">LinkedIn</span><span class="value">Lakshani Dewapura</span></a>
+    <a class="contact-card reveal" href="https://www.linkedin.com/in/lakshani-dewapura-7a992836b " target="_blank"><span class="label">LinkedIn</span><span class="value">Lakshani Dewapura</span></a>
     <a class="contact-card reveal" href="Lakshani_Nimansha_Dewapura.pdf" download><span class="label">Resume</span><span class="value">Download CV</span></a>
   </div>
   <div class="contact-cta reveal">
@@ -511,7 +512,7 @@
   <p>Designed &amp; Built by Lakshani Dewapura</p>
   <div class="footer-links">
     <a href="https://github.com/lakzi03" target="_blank">GitHub</a>
-    <a href="#" target="_blank">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/lakshani-dewapura-7a992836b " target="_blank">LinkedIn</a>
     <a href="mailto:lakshanidewapura03@gmail.com">Email</a>
   </div>
 </footer>
@@ -528,30 +529,28 @@
   document.querySelectorAll('.skills-grid, .projects-grid, .contact-grid, .soft-wrap').forEach(grid=>{
     [...grid.children].forEach((child,i)=>{ child.style.transitionDelay = (i*0.07)+'s'; });
   });
+  const themeToggle = document.getElementById("themeToggle");
 
-  const themeToggle = document.getElementById('themeToggle');
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme");
 
-  const applyTheme = (theme) => {
-    const isLight = theme === 'light';
-    document.body.classList.toggle('light-mode', isLight);
-    if (themeToggle) {
-      themeToggle.textContent = isLight ? '☀️' : '🌙';
-    }
-    localStorage.setItem('theme', theme);
-  };
-
-  const savedTheme = localStorage.getItem('theme');
-  const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  const initialTheme = savedTheme || preferredTheme;
-
-  applyTheme(initialTheme);
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const nextTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
-      applyTheme(nextTheme);
-    });
+  if (savedTheme === "light") {
+    document.body.classList.add("light-mode");
+    themeToggle.textContent = "☀️";
   }
+
+  // Toggle theme
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+
+    const isLight = document.body.classList.contains("light-mode");
+
+    themeToggle.textContent = isLight ? "☀️" : "🌙";
+
+    // Save preference
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+  });
+y
 </script>
 
 </body>
