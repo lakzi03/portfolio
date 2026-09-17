@@ -17,12 +17,62 @@
     --cyan:#5EEAD4;
     --amber:#F5A623;
     --pink:#F472B6;
+    --nav-bg: rgba(10, 14, 20, 0.8);
+    --badge-bg: rgba(16, 21, 31, 0.85);
+    --hero-tag-bg: rgba(10, 14, 20, 0.75);
     --mono:'JetBrains Mono', monospace;
     --sans:'Inter', sans-serif;
   }
+
+  body.light-mode {
+    --bg: #F8FAFC;
+    --bg2: #FFFFFF;
+    --bg3: #F1F5F9;
+    --line: #D7DEE8;
+    --text: #111827;
+    --muted: #64748B;
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --badge-bg: rgba(255, 255, 255, 0.8);
+    --hero-tag-bg: rgba(255, 255, 255, 0.75);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color-scheme: dark;
+  }
+
+  body.light-mode {
+    color-scheme: light;
+  }
+
+  .theme-toggle {
+    border: 1px solid var(--line);
+    background: var(--bg2);
+    color: var(--text);
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.25s ease;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    transform: translateY(-2px);
+  }
+
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg); color:var(--text); font-family:var(--sans); overflow-x:hidden;}
+  ::selection{background:var(--cyan); color:var(--bg);}
   ::selection{background:var(--cyan); color:var(--bg);}
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
@@ -41,7 +91,7 @@
   nav{
     position:fixed; top:0; left:0; right:0; z-index:100;
     display:flex; align-items:center; justify-content:space-between;
-    padding:18px 6vw; background:rgba(10,14,20,0.85); backdrop-filter:blur(10px);
+    padding:18px 6vw; background:var(--nav-bg); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   .logo{font-family:var(--mono); font-weight:700; font-size:15px; color:var(--text); display:flex; align-items:center; gap:10px;}
@@ -115,7 +165,7 @@
   .hero-photo-frame{position:relative; width:100%; height:100%; border-radius:50%; overflow:hidden; background:var(--bg2); border:4px solid var(--bg);}
   .hero-photo-frame img{width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(10%) contrast(1.05); transition:filter 0.4s ease, transform 0.5s ease;}
   .hero-photo-frame:hover img{filter:grayscale(0%) contrast(1.08); transform:scale(1.05);}
-  .orbit-badge{position:absolute; z-index:4; font-family:var(--mono); font-weight:600; font-size:13px; padding:9px 16px; border-radius:10px; background:rgba(16,21,31,0.85); backdrop-filter:blur(8px); border:1px solid var(--line); box-shadow:0 10px 30px rgba(0,0,0,0.4); animation:badgeFloat 4s ease-in-out infinite;}
+  .orbit-badge{position:absolute; z-index:4; font-family:var(--mono); font-weight:600; font-size:13px; padding:9px 16px; border-radius:10px; background:var(--badge-bg); backdrop-filter:blur(8px); border:1px solid var(--line); box-shadow:0 10px 30px rgba(0,0,0,0.12); animation:badgeFloat 4s ease-in-out infinite;}
   .orbit-badge.b1{ top:6%; right:-6%; color:var(--amber); animation-delay:0s; }
   .orbit-badge.b2{ top:38%; left:-14%; color:var(--cyan); animation-delay:0.6s; }
   .orbit-badge.b3{ bottom:8%; left:-4%; color:var(--pink); animation-delay:1.2s; }
@@ -125,7 +175,7 @@
     .orbit-badge.b1{right:-2%;} .orbit-badge.b2{left:-6%;} .orbit-badge.b3{left:0%;} .orbit-badge.b4{right:-2%;}
   }
   @keyframes badgeFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-  .hero-photo-tag{position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); z-index:4; font-family:var(--mono); font-size:11.5px; color:var(--text); background:rgba(10,14,20,0.75); backdrop-filter:blur(6px); padding:6px 14px; border-radius:20px; border:1px solid var(--line); display:flex; align-items:center; gap:7px; white-space:nowrap;}
+  .hero-photo-tag{position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); z-index:4; font-family:var(--mono); font-size:11.5px; color:var(--text); background:var(--hero-tag-bg); backdrop-filter:blur(6px); padding:6px 14px; border-radius:20px; border:1px solid var(--line); display:flex; align-items:center; gap:7px; white-space:nowrap;}
   .hero-photo-tag .d{width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan); animation:pulse 2s infinite;}
 
   .scroll-cue{position:absolute; bottom:30px; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:11px; color:var(--muted); display:flex; flex-direction:column; align-items:center; gap:8px;}
@@ -226,6 +276,9 @@
     <li><a href="#contact">contact</a></li>
     <li class="nav-resume-item"><a class="nav-resume" href="Lakshani_Nimansha_Dewapura.pdf" target="_blank" rel="noopener">Resume</a></li>
   </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    🌙
+  </button>
 </nav>
 
 <section class="hero" id="top">
@@ -233,7 +286,7 @@
     <div class="hero-text">
       <div class="eyebrow-tag"><span class="rule"></span>00 — portfolio</div>
       <h1 class="hero-name">Lakshani<br>Dewapura</h1>
-      <div class="hero-role">Information Technology Undergraduate</div>
+      <div class="hero-role">Information Technology Undergraduate @SLIIT</div>
       <p class="hero-desc">I am passionate about Software Engineering, Full-Stack Development, Business Analysis, and Quality Assurance, with hands-on experience in web application development, REST API design, software testing, and test automation. I have experience working with modern technologies to build reliable, user-focused applications and solve real-world problems. I am eager to continuously learn, improve my technical and analytical skills, and contribute to developing high-quality software solutions.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#about">View Profile</a>
@@ -289,7 +342,6 @@
       <div class="stat"><span class="k">degree</span><span class="v">BSc (Hons) IT</span></div>
       <div class="stat"><span class="k">university</span><span class="v">SLIIT</span></div>
       <div class="stat"><span class="k">year</span><span class="v">3rd Year</span></div>
-      <div class="stat"><span class="k">projects</span><span class="v">5+</span></div>
       <div class="stat"><span class="k">status</span><span class="v">open to internships</span></div>
     </div>
   </div>
@@ -413,7 +465,7 @@
     <div class="t-item reveal">
       <div class="t-year">2023 — Present</div>
       <h3>BSc (Hons) in Information Technology</h3>
-      <div class="t-sub">Specializing in Information Technology · Sri Dharmaloka College, Kelaniya</div>
+      <div class="t-sub">Specializing in Information Technology · SLIIT</div>
       <ul><li>Currently in 3rd Year</li></ul>
     </div>
     <div class="t-item reveal">
@@ -440,7 +492,7 @@
   <div class="eyebrow-tag reveal"><span class="rule"></span>05 — contact</div>
   <div class="section-head reveal">
     <h2>Let's Work Together</h2>
-    <p>I'm open to internship opportunities in Software Engineering and Full-Stack Development. You can reach me through email, GitHub, or LinkedIn.</p>
+    <p>I'm open to internship opportunities in Software Engineering , Quality Assurance , Business Analysis , Data Analysis  and Full-Stack Development. You can reach me through email, GitHub, or LinkedIn.</p>
   </div>
   <div class="contact-grid">
     <a class="contact-card reveal" href="mailto:lakshanidewapura03@gmail.com"><span class="label">Email</span><span class="value">lakshanidewapura03@gmail.com</span></a>
@@ -476,6 +528,30 @@
   document.querySelectorAll('.skills-grid, .projects-grid, .contact-grid, .soft-wrap').forEach(grid=>{
     [...grid.children].forEach((child,i)=>{ child.style.transitionDelay = (i*0.07)+'s'; });
   });
+
+  const themeToggle = document.getElementById('themeToggle');
+
+  const applyTheme = (theme) => {
+    const isLight = theme === 'light';
+    document.body.classList.toggle('light-mode', isLight);
+    if (themeToggle) {
+      themeToggle.textContent = isLight ? '☀️' : '🌙';
+    }
+    localStorage.setItem('theme', theme);
+  };
+
+  const savedTheme = localStorage.getItem('theme');
+  const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  const initialTheme = savedTheme || preferredTheme;
+
+  applyTheme(initialTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+      applyTheme(nextTheme);
+    });
+  }
 </script>
 
 </body>
